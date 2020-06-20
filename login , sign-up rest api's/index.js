@@ -1,8 +1,10 @@
 const express=require('express');
 const mongooses= require('mongoose');
+const bodyparser=require('body-parser');
+const bcrypt=require('bcrypt');
 const User=require('./models/user');
 const db=require('./mysetup/myurl').myurl;
-const bodyparser=require('body-parser');
+var saltRouds = 10;
 
 var app=express();
 // app use
@@ -29,13 +31,21 @@ app.post('/signup',function(req,res){
     User.findOne({email: newUser.email},function(err,user){
         if(user) return res.status(400).json({isAuth: false, message: 'user already exist'});
 
-        //saving in the database
-        newUser.save().then(()=>{
-            res.status(200).send(newUser);
-            }).catch(err=>{
-            console.log("error is ", err.message);
-            });
-    })
+        //hasing the passwords
+        bcrypt.hash(newUser.password,saltRouds, function(err,hash){
+            if(err) console.log('error is ', err.message);
+            else{
+                newUser.password=hash;
+                
+            //saving in the database
+                newUser.save().then(()=>{
+                res.status(200).send(newUser);
+                }).catch(err=>{
+                console.log("error is ", err.message);
+                });
+            }
+        });
+    });
       //console.log(newUser.email,newUser.password);
 
      
