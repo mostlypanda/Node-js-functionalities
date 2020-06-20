@@ -2,7 +2,9 @@ const express=require('express');
 const mongooses= require('mongoose');
 const bodyparser=require('body-parser');
 const bcrypt=require('bcrypt');
+const cookieParser=require('cookie-parser');
 const User=require('./models/user');
+const {auth} =require('./middlewares/auth');
 const db=require('./mysetup/myurl').myurl;
 const passport=require('passport');
 var saltRouds = 10;
@@ -22,7 +24,7 @@ mongooses.connect(db).then(()=>{
 
 // adding new user (sign-up route)
 
-app.post('/signup',function(req,res){
+app.post('/api/signup',function(req,res){
    // taking a user
     var newUser=new User({
         email: req.body.email,
@@ -51,7 +53,7 @@ app.post('/signup',function(req,res){
 });
 
 // login user
-app.post('/login', function(req,res){
+app.post('/api/login', function(req,res){
     var newUser={};
     newUser.email=req.body.email;
     newUser.password=req.body.password
@@ -87,10 +89,27 @@ app.post('/login', function(req,res){
     });
 });
 
+// profile
+app.get('/api/profile',auth,function(req,res){
+    res.status(200).json({
+        isAuth: true,
+        id: req.user._id,
+        email: req.user.email
+    });
+});
+
+//logout a user
+app.get('/api/logout',auth,function(req,res){
+    req.user.deleteToken(req.token,(err,user)=>{
+        if(err) return res.status(400).send(err);
+        res.sendStatus(200);
+    });
+})
+
 
 
 app.get('/',function(req,res){
-    res.status(200).send(`hyy`);
+    res.status(200).send(`Welcome to login , sign-up api`);
 })
 
 // listening port
