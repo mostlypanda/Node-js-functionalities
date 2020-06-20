@@ -46,10 +46,28 @@ app.post('/signup',function(req,res){
             }
         });
     });
-      //console.log(newUser.email,newUser.password);
+});
 
-     
-   
+// login user
+app.post('/login', function(req,res){
+    var newUser={};
+    newUser.email=req.body.email;
+    newUser.password=req.body.password
+
+    User.findOne({email: newUser.email},function(err,user){
+        if(!user) res.status(400).json({isAuth: false, message :'User doesnt exists'});
+         bcrypt.compare(newUser.password, user.password, function(err,result){
+             if(err) console.log('error is ', err.message);
+             else if(result==true){
+                 res.status(200).json({isAuth : true, message: 'User authenticated'});
+             }
+             else{
+                res.status(400).json({isAuth : false, message: 'Password is incorrect'});
+             }
+         })
+    }).catch(err=>{
+        console.log('error is ', err.message);
+    });
 });
 
 app.get('/',function(req,res){
