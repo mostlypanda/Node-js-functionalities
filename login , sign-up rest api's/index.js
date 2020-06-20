@@ -4,12 +4,14 @@ const bodyparser=require('body-parser');
 const bcrypt=require('bcrypt');
 const User=require('./models/user');
 const db=require('./mysetup/myurl').myurl;
+const passport=require('passport');
 var saltRouds = 10;
 
 var app=express();
 // app use
 app.use(bodyparser.urlencoded({extended : false}));
 app.use(bodyparser.json());
+
 
 // database connection
 mongooses.connect(db).then(()=>{
@@ -55,20 +57,37 @@ app.post('/login', function(req,res){
     newUser.password=req.body.password
 
     User.findOne({email: newUser.email},function(err,user){
+        // user not found
         if(!user) res.status(400).json({isAuth: false, message :'User doesnt exists'});
-         bcrypt.compare(newUser.password, user.password, function(err,result){
+        
+        //comparing password
+        bcrypt.compare(newUser.password, user.password, function(err,result){
              if(err) console.log('error is ', err.message);
              else if(result==true){
-                 res.status(200).json({isAuth : true, message: 'User authenticated'});
+                 // passowrd matched
+                 //token genearated
+                    user.generateToken((err,user)=>{
+                    if(err) return res.status(400).send(err);
+                    res.cookie('auth',user.token).json({
+                        isAuth : true,
+                        id : user._id,
+                        email : user.email
+                    })
+                });
              }
              else{
+                 //password does not match
                 res.status(400).json({isAuth : false, message: 'Password is incorrect'});
              }
-         })
+         });
+
+            
     }).catch(err=>{
         console.log('error is ', err.message);
     });
 });
+
+
 
 app.get('/',function(req,res){
     res.status(200).send(`hyy`);
