@@ -16,7 +16,31 @@ mongooses.connect(db).then(()=>{
     console.log("err is", err.message);
 })
 
+// adding new user (sign-up route)
 
+app.post('/signup',function(req,res){
+   // taking a user
+    var newUser=new User({
+        email: req.body.email,
+        password: req.body.password
+    });
+  
+   // checking whether user is already registered or not
+    User.findOne({email: newUser.email},function(err,user){
+        if(user) return res.status(400).json({isAuth: false, message: 'user already exist'});
+
+        //saving in the database
+        newUser.save().then(()=>{
+            res.status(200).send(newUser);
+            }).catch(err=>{
+            console.log("error is ", err.message);
+            });
+    })
+      //console.log(newUser.email,newUser.password);
+
+     
+   
+});
 
 app.get('/',function(req,res){
     res.status(200).send(`hyy`);
