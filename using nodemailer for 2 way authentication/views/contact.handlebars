@@ -23,29 +23,27 @@
       </div>
       <div class="contact">
         <h3>Email Us</h3>
-        <form>
+        {{msg}}
+        <form method="POST" action="send">
           <p>
-            <label>Name</label>
-            <input type="text" name="name">
+            <label>Firstname</label>
+            <input type="text" name="firstname" required>
           </p>
           <p>
-            <label>Company</label>
-            <input type="text" name="company">
+            <label>Lastname</label>
+            <input type="text" name="lastname" required>
           </p>
           <p>
             <label>Email Address</label>
-            <input type="email" name="email">
+            <input type="email" name="email" required>
           </p>
           <p>
             <label>Phone Number</label>
-            <input type="text" name="phone">
+            <input type="number" name="phone" required>
           </p>
+         
           <p class="full">
-            <label>Message</label>
-            <textarea name="message" rows="5"></textarea>
-          </p>
-          <p class="full">
-            <button>Submit</button>
+            <button type="submit">Submit</button>
           </p>
         </form>
       </div>

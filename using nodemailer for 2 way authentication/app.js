@@ -24,6 +24,20 @@ app.get('/',function(req,res){
 });
 
 
+app.post('/send',function(req,res){
+    const output= `
+    <h1> You have a new contact request</h1>
+    <h3>COntact Details</h3>
+    <ul>
+    <li> Firstname: ${req.body.firstname}</li>
+    <li> Lastname: ${req.body.lastname}</li>
+    <li> email: ${req.body.email}</li>
+    <li> phone: ${req.body.phone}</li>
+    </ul>
+
+    `;
+});
+
 const PORT=process.env.PORT||3000;
 app.listen(PORT,()=>{
     console.log(`app is live at ${PORT}`);
