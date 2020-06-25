@@ -50,8 +50,8 @@ app.post('/send',function(req,res){
         service : 'Gmail',
         
         auth: {
-          user: 'sarthakmittal1461@gmail.com',
-          pass: 'S@rth@k09',
+          user: 'YOUR MAIL',
+          pass: 'MAIL PASSWORD',
         }
         
       });
