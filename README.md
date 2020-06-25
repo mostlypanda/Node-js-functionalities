@@ -7,3 +7,16 @@ Upto now I have uploadedbelow functionalities
 3. OTP verification here complete form is designed and when user filled and submit the form an otp will be sent to filled email of user using nodemailer module and smtp method 
 then user has to enter the received otp for further verification
 
+# to run any above utility or api
+clone the above repository by using 
+```
+git clone "Repo_name"
+```
+then
+```
+cd (name of the folder you want to go)
+```
+and finally
+```
+npm install
+```
