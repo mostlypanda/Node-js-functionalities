@@ -50,8 +50,8 @@ app.post('/send',function(req,res){
         service : 'Gmail',
         
         auth: {
-          user: 'YOUR MAIL',
-          pass: 'MAIL PASSWORD',
+          user: 'sarthakmittal1461@gmail.com',
+          pass: 'S@rth@k09',
         }
         
       });
@@ -75,6 +75,7 @@ app.post('/send',function(req,res){
     });
 
 app.post('/sendotp',function(req,res){
+
     if(req.body.otp==otp){
         res.send("welcome");
     }
