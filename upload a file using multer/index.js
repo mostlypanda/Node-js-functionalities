@@ -62,13 +62,13 @@ app.post('/api/upload',function(req,res){
             res.render('index',{msg : err});
         }
         else{
-            if(res.file==undefined){
+            if(req.file==undefined){
                 res.render('index',{msg :'error : no file selected'});
             }
             else{
                 res.render('index',{
                     msg: 'file uploaded',
-                    file: `/uploads/${req.file.filename}`
+                    file: `uploads/${req.file.filename}`
                 });
             }
         }
