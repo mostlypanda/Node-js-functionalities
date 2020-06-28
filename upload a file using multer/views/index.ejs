@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node-js file upload</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            
+</head>
+<body>
+    <div class="container">
+        <h1> file upload</h1>
+        <% typeof msg !='indefined' ? msg :'';%>
+        <form action="/api/upload" method="POST">
+            <div class="file-field input-field">
+              <div class="btn">
+                <span>File</span>
+                <input type="file"name="myImage">
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+              </div>
+            </div>
+            <button type="submit" class="btn">Submit!!</button>
+          </form>
+    </div>
+
+</body>
+</html>
