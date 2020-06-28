@@ -4,19 +4,40 @@ const path=require('path');
 const multer=require('multer');
 const ejs=require('ejs');
 
+
 //defining storage
 var storage=multer.diskStorage({
-    destination : function(req,file,cb){
-        cb(null,'./uploads');
-    },
+    destination :'./public/uploads',
     filename: function(req,file,cb){
-        cb(null,file.filename+ '-'+ Date.now());
+        cb(null,file.fieldname+ '-'+ Date.now() + path.extname(file.originalname));
     }
 });
+const upload =multer({
+    storage : storage,
+    limits : {fileSize : 10000000},
+    fileFilter : function(req,file,cb){
+        checkFileType(file,cb);
+    }
+}).single('myImage');
 
-var upload=multer({storage : storage}).single('userPhoto');
 
+function checkFileType(file,cb){
+    //allowed ext
+    const filetypes =/jpeg|jpg|png|gif/;
+    // check ext
+    const extname= filetypes.test(path.extname(file.originalname).toLowerCase());
+    //check mime
+    const mimetype =filetypes.test(file.mimetype);
+    
+    if(mimetype && extname){
+        return cb(null,true)
+    }
+    else{
+        cb('Error : Images only!');
+    }
+}
 
+//app
 const app=express();
 
 //set engine
@@ -29,18 +50,30 @@ app.use(bodyparser.urlencoded({extended : false}));
 //set static directory
 app.use('/public',express.static(path.join(__dirname + 'public')));
 
-
+//basic route
 app.get('/',function(req,res){
-    res.render('index');
+    res.render('index',{msg : ''});
 })
 
+//upload an image
 app.post('/api/upload',function(req,res){
     upload(req,res,function(err){
         if(err){
-            res.status(400).end('error');
+            res.render('index',{msg : err});
         }
-        res.status(200).end('file uploaded');
-    })
+        else{
+            if(res.file==undefined){
+                res.render('index',{msg :'error : no file selected'});
+            }
+            else{
+                res.render('index',{
+                    msg: 'file uploaded',
+                    file: `/uploads/${req.file.filename}`
+                });
+            }
+        }
+        
+    });
 });
 
 //port is live

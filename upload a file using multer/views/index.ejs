@@ -14,8 +14,8 @@
 <body>
     <div class="container">
         <h1> file upload</h1>
-        <% typeof msg !='indefined' ? msg :'';%>
-        <form action="/api/upload" method="POST">
+        <%= typeof msg !='undefined' ? msg : '' %>
+        <form action="/api/upload" method="POST" enctype="multipart/form-data">
             <div class="file-field input-field">
               <div class="btn">
                 <span>File</span>
@@ -27,6 +27,8 @@
             </div>
             <button type="submit" class="btn">Submit!!</button>
           </form>
+          <br>
+          <img scr="<%= typeof file !='undefined' ? file :'' %> ", class="img-responsive">
     </div>
 
 </body>
