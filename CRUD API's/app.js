@@ -2,6 +2,7 @@ const express=require('express');
 const bodyparser=require('body-parser');
 const mongoose=require('mongoose');
 const dburl=require('./database/myurl.js');
+const Note= require('./')
 
 //create express app
 const app=express();
