@@ -22,7 +22,7 @@ exports.create=function(req,res){
         newnote.save()
         .then(data=> {res.status(200).send(data)})
         .catch(err=>{
-            res.status(400).json({"message" : "Some error occurred while creating the Note"});
+            res.status(404).json({"message" : "Some error occurred while creating the Note"});
         });
 
     });
@@ -35,7 +35,7 @@ exports.findAll=function(req,res){
     .then(notes=>{
         res.status(200).send(notes);
     }).catch(err=>{
-        res.status(400).json({"message": "Some error occurred while retrieving notes."});
+        res.status(404).json({"message": "Some error occurred while retrieving notes."});
     });
 };
 
@@ -45,7 +45,7 @@ exports.findone=function(req,res){
     Note.findById(req.params.noteId)
     .then(note=>{
         if(!note){
-            return res.status(400).send({message:"Note not found with id " + req.params.noteId});
+            return res.status(404).send({message:"Note not found with id " + req.params.noteId});
         }
         res.status(200).send(note);
     }).catch(err=>{
@@ -62,9 +62,9 @@ exports.findone=function(req,res){
 //request to find ny the name of author
 exports.findbyauthor=function(req,res){
     Note.find({author:req.params.author},function(err,note){
-        if(note) return res.status(400).send(note);
+        if(!note) return res.status(404).send({message:"not found"});
         else{
-        return res.status(400).send({message : "No author with given name has been found"});
+        return res.status(200).send(note);
         }
     });
 };
@@ -72,9 +72,9 @@ exports.findbyauthor=function(req,res){
 // request to find by the name of title of note
 exports.findbytitle=function(req,res){
     Note.find({title:req.params.title},function(err,note){
-        if(note) return res.status(400).send(note);
+        if(note) return res.status(200).send(note);
         
-        res.status(400).send({message : "No note with given title name has been found"});
+        res.status(404).send({message : "No note with given title name has been found"});
        
     });
 };
@@ -93,9 +93,9 @@ exports.update=function(req,res){
     },{new: true})
     .then(note=>{
         if(!note){
-            return res.status(400).send({message: "note not found with id "+req.params.noteId});
+            return res.status(404).send({message: "note not found with id "+req.params.noteId});
         }
-        res.send(note);
+        res.status(200).send(note);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
@@ -115,7 +115,7 @@ exports.delete=function(req,res){
     Note.findByIdAndDelete(req.params.noteId)
     .then(note=>{
         if(!note){
-            return res.status(400).send({message :"Note not found with id"+req.params.noteId});
+            return res.status(404).send({message :"Note not found with id"+req.params.noteId});
         }
         res.send({message : "note deleted successfully"});
     }).catch(err => {
