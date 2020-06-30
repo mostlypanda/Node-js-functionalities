@@ -56,9 +56,9 @@ exports.findone=function(req,res){
 exports.findbyauthor=function(req,res){
     Note.find({author:req.params.author},function(err,note){
         if(note) return res.status(400).send(note);
-        
-        res.status(400).send({message : "No author with given name has been found"});
-       
+        else{
+        return res.status(400).send({message : "No author with given name has been found"});
+        }
     });
 };
 
@@ -67,15 +67,32 @@ exports.findbytitle=function(req,res){
     Note.find({title:req.params.title},function(err,note){
         if(note) return res.status(400).send(note);
         
-        res.status(400).send({message : "No author with given name has been found"});
+        res.status(400).send({message : "No note with given title name has been found"});
        
     });
 };
 
+//update any note with given id
 exports.update=function(req,res){
-
+    
 };
 
+//to delete any note by id
 exports.delete=function(req,res){
-
+    Note.findByIdAndDelete(req.params.noteId)
+    .then(note=>{
+        if(!note){
+            return res.status(400).send({message :"Note not found with id"+req.params.noteId});
+        }
+        res.send({message : "note deleted successfully"});
+    }).catch(err => {
+        if(err.kind === 'ObjectId' || err.name === 'NotFound') {
+            return res.status(404).send({
+                message: "Note not found with id " + req.params.noteId
+            });                
+        }
+        return res.status(500).send({
+            message: "Could not delete note with id " + req.params.noteId
+        });
+    });
 };

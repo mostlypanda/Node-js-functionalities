@@ -17,8 +17,8 @@ module.exports=(app)=>{
     app.get('/api/findbytitle/:title',notes.findbytitle);
 
     //update a note with noteId
-    app.put('/api/notes/:noteId',notes.update);
+    app.put('/api/update/:noteId',notes.update);
 
     //delete a Note with noteId
-    app.delete('/api/notes/:noteId',notes.delete);
+    app.delete('/api/delete/:noteId',notes.delete);
 }
