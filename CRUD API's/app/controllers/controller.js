@@ -15,17 +15,26 @@ exports.create=function(req,res){
         newnote.save()
         .then(data=> {res.status(200).send(data)})
         .catch(err=>{
-            res.status(400).json({"message" : "error"});
+            res.status(400).json({"message" : "Some error occurred while creating the Note"});
         });
 
     });
 };
 
-exports.findAll=function(req,res){
 
+// to find all the notes
+exports.findAll=function(req,res){
+    Note.find()
+    .then(notes=>{
+        res.status(200).send(notes);
+    }).catch(err=>{
+        res.status(400).json({"message": "Some error occurred while retrieving notes."});
+    });
 };
 
+// find a note by id
 exports.findone=function(req,res){
+    
 
 };
 

@@ -14,8 +14,7 @@ const noteSchema=mongoose.Schema({
         type : String,
         require: true
     }
-},
-{
+},{
     timestamp: true
 });
 
