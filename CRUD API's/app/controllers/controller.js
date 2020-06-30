@@ -35,7 +35,41 @@ exports.findAll=function(req,res){
 // find a note by id
 exports.findone=function(req,res){
     
+    Note.findById(req.params.noteId)
+    .then(note=>{
+        if(!note){
+            return res.status(400).send({message:"Note not found with id " + req.params.noteId});
+        }
+        res.status(200).send(note);
+    }).catch(err=>{
+        if(err.kind=='ObjectId'){
+            return res.status(404).send({ message: "Note not found with id " + req.params.noteId });
+        }
+        return res.status(500).send({
+            message: "Error retrieving note with id " + req.params.noteId
+        });
+    });
 
+};
+
+//request to find ny the name of author
+exports.findbyauthor=function(req,res){
+    Note.find({author:req.params.author},function(err,note){
+        if(note) return res.status(400).send(note);
+        
+        res.status(400).send({message : "No author with given name has been found"});
+       
+    });
+};
+
+// request to find by the name of title of note
+exports.findbytitle=function(req,res){
+    Note.find({title:req.params.title},function(err,note){
+        if(note) return res.status(400).send(note);
+        
+        res.status(400).send({message : "No author with given name has been found"});
+       
+    });
 };
 
 exports.update=function(req,res){

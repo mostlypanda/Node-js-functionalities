@@ -8,7 +8,13 @@ module.exports=(app)=>{
     app.get('/api/notes',notes.findAll);
 
     //retrive a single note by id
-    app.get('/api/notes/:noteId',notes.findone);
+    app.get('/api/find/:noteId',notes.findone);
+
+    //retrive all notes by a particular author
+    app.get('/api/findauthor/:author',notes.findbyauthor);
+
+    // retrive all notes by the note title
+    app.get('/api/findbytitle/:title',notes.findbytitle);
 
     //update a note with noteId
     app.put('/api/notes/:noteId',notes.update);
