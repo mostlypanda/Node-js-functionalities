@@ -3,7 +3,7 @@ const mongoose=require('mongoose');
 //defining schema
 const noteSchema=mongoose.Schema({
     title:{
-        type: string,
+        type: String,
         require: true
     },
     author:{
@@ -11,7 +11,7 @@ const noteSchema=mongoose.Schema({
         require: true
     },
     content:{
-        type : string,
+        type : String,
         require: true
     }
 },
