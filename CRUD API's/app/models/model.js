@@ -15,7 +15,7 @@ const noteSchema=mongoose.Schema({
         require: true
     }
 },{
-    timestamp: true
+    timestamps: true
 });
 
 module.exports=mongoose.model('Note',noteSchema);
