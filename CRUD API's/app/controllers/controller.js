@@ -2,6 +2,13 @@ const Note=require('../models/model');
 
 // create and save a new note
 exports.create=function(req,res){
+    
+    if(!req.body.title||!req.body.author||!req.body.content) {
+        return res.status(400).send({
+            message: "Every field is required"
+        });
+    }
+
     const newnote=Note({
         title: req.body.title,
         author: req.body.author,
@@ -75,6 +82,32 @@ exports.findbytitle=function(req,res){
 //update any note with given id
 exports.update=function(req,res){
     
+    if(!req.body.content){
+        return res.status(400).send({message :"Note content can not be empty"})
+    }
+    
+    Note.findByIdAndUpdate(req.params.noteId,{
+        title : req.body.title,
+        author : req.body.author,
+        content : req.body.content
+    },{new: true})
+    .then(note=>{
+        if(!note){
+            return res.status(400).send({message: "note not found with id "+req.params.noteId});
+        }
+        res.send(note);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Note not found with id " + req.params.noteId
+            });                
+        }
+        return res.status(500).send({
+            message: "Error updating note with id " + req.params.noteId
+        });
+    });
+
+
 };
 
 //to delete any note by id
