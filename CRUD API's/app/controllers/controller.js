@@ -20,7 +20,7 @@ exports.create=function(req,res){
         if(note)return res.status(400).json({message: "same title exists"});
 
         newnote.save()
-        .then(data=> {res.status(200).send(data)})
+        .then(data=> {res.status(201).send(data)})
         .catch(err=>{
             res.status(404).json({"message" : "Some error occurred while creating the Note"});
         });
