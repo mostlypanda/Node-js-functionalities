@@ -19,63 +19,57 @@ exports.create=function(req,res){
     Note.findOne({title: newnote.title},function(err,note){
         if(note)return res.status(400).json({message: "same title exists"});
 
-        newnote.save()
-        .then(data=> {res.status(201).send(data)})
-        .catch(err=>{
-            res.status(404).json({"message" : "Some error occurred while creating the Note"});
+        newnote.save(function(err,doc){
+            if(err) return res.status(400).json(err);
+            res.status(201).json({
+                post : true,
+                note : doc
+            });
         });
-
     });
 };
 
 
 // to find all the notes
 exports.findAll=function(req,res){
-    Note.find()
-    .then(notes=>{
-        res.status(200).send(notes);
-    }).catch(err=>{
-        res.status(404).json({"message": "Some error occurred while retrieving notes."});
-    });
+    Note.find(function(err,doc){
+        if(err) return res.status(400).send(err);
+        res.status(200).json(doc);
+    })
 };
 
 // find a note by id
 exports.findone=function(req,res){
     
-    Note.findById(req.params.noteId)
-    .then(note=>{
-        if(!note){
-            return res.status(404).send({message:"Note not found with id " + req.params.noteId});
-        }
-        res.status(200).send(note);
-    }).catch(err=>{
-        if(err.kind=='ObjectId'){
-            return res.status(404).send({ message: "Note not found with id " + req.params.noteId });
-        }
-        return res.status(500).send({
-            message: "Error retrieving note with id " + req.params.noteId
-        });
-    });
+    Note.findById(req.params.noteId,function(err,doc){
+        if(err) return res.status(400).send(err);
+
+        res.status(200),json(doc);
+    })
+    
 
 };
 
 //request to find ny the name of author
 exports.findbyauthor=function(req,res){
     Note.find({author:req.params.author},function(err,note){
+        if(err) return res.status(400).send(err); 
+        
         if(!note) return res.status(404).send({message:"not found"});
-        else{
-        return res.status(200).send(note);
-        }
+    
+        res.status(200).json(note);
+        
     });
 };
 
 // request to find by the name of title of note
 exports.findbytitle=function(req,res){
     Note.find({title:req.params.title},function(err,note){
-        if(note) return res.status(200).send(note);
+        if(err) return res.status(400).send(err); 
         
-        res.status(404).send({message : "No note with given title name has been found"});
-       
+        if(!note) return res.status(404).send({message:"not found"});
+    
+        res.status(200).json(note);  
     });
 };
 
@@ -90,42 +84,30 @@ exports.update=function(req,res){
         title : req.body.title,
         author : req.body.author,
         content : req.body.content
-    },{new: true})
-    .then(note=>{
-        if(!note){
-            return res.status(404).send({message: "note not found with id "+req.params.noteId});
-        }
-        res.status(200).send(note);
-    }).catch(err => {
-        if(err.kind === 'ObjectId') {
-            return res.status(404).send({
-                message: "Note not found with id " + req.params.noteId
-            });                
-        }
-        return res.status(500).send({
-            message: "Error updating note with id " + req.params.noteId
-        });
-    });
+    },{new: true},function(err,doc){
+        if(err) return res.status(400).send(err);
+        
+        if(!doc) return res.status(404).json({message : "No note with this id has been found"});
 
-
+        res.status(200).json({
+            update : true,
+            note : doc
+        })
+    })
+    
 };
 
 //to delete any note by id
 exports.delete=function(req,res){
-    Note.findByIdAndDelete(req.params.noteId)
-    .then(note=>{
-        if(!note){
-            return res.status(404).send({message :"Note not found with id"+req.params.noteId});
-        }
-        res.send({message : "note deleted successfully"});
-    }).catch(err => {
-        if(err.kind === 'ObjectId' || err.name === 'NotFound') {
-            return res.status(404).send({
-                message: "Note not found with id " + req.params.noteId
-            });                
-        }
-        return res.status(500).send({
-            message: "Could not delete note with id " + req.params.noteId
+    Note.findByIdAndDelete(req.params.noteId,function(err,doc){
+        if(err) return res.status(400).send(err);
+
+        if(!doc) return res.status(404).json({message : "NOt found"});
+
+        res.status(200).json({
+            delete : true,
+            note : doc
         });
-    });
+    })
+    
 };
