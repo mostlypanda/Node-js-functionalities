@@ -43,8 +43,8 @@ exports.findone=function(req,res){
     
     Note.findById(req.params.noteId,function(err,doc){
         if(err) return res.status(400).send(err);
-
-        res.status(200),json(doc);
+        if(!doc) return res.status(404).json({message : "Note with given Id is not found"});
+        res.status(200).json(doc);
     })
     
 
@@ -55,7 +55,7 @@ exports.findbyauthor=function(req,res){
     Note.find({author:req.params.author},function(err,note){
         if(err) return res.status(400).send(err); 
         
-        if(!note) return res.status(404).send({message:"not found"});
+        if(!note) return res.status(404).json({message:"not found"});
     
         res.status(200).json(note);
         
@@ -67,7 +67,7 @@ exports.findbytitle=function(req,res){
     Note.find({title:req.params.title},function(err,note){
         if(err) return res.status(400).send(err); 
         
-        if(!note) return res.status(404).send({message:"not found"});
+        if(!note) return res.status(404).json({message:"not found"});
     
         res.status(200).json(note);  
     });
