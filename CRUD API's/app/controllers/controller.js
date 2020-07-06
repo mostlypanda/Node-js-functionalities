@@ -76,8 +76,10 @@ exports.findbytitle=function(req,res){
 //update any note with given id
 exports.update=function(req,res){
     
-    if(!req.body.content){
-        return res.status(400).send({message :"Note content can not be empty"})
+   if(!req.body.title||!req.body.author||!req.body.content) {
+        return res.status(400).send({
+            message: "Every field is required"
+        });
     }
     
     Note.findByIdAndUpdate(req.params.noteId,{
