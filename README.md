@@ -9,6 +9,14 @@ then user has to enter the received otp for further verification
 4. CRUD(Create, Read, Update, Delete) API's have been successfully created, here you can create any note and then you can find it by id, author name, title as well as all, you can edit it by id name and delete it also
 5. To upload an image in nodejs using multer(local storage)
 ---
+## tutorial blogs
+In this series I have also written the tutorial blogs-
+* My first blog is about developing CRUD api's 
+(url - [a link](https://medium.com/@sarthakmittal1461/to-make-restful-crud-apis-with-node-js-express-and-mongodb-5e76a7d2d8fe) )
+
+## you will find more stay tuned with my medium.com profile
+
+---
 ## Requirements
 
 For development, you will need Node.js and a node global package, Yarn, installed in your environement and many other packages also which are stated further
