@@ -18,8 +18,23 @@ const paystack=function(request){
         }
         request.post(options,callback);
     };
+
+
     const verifypayment=function(ref,cb){
-        
+
+        const options = {
+            url : 'https://api.paystack.co/transaction/verify/'+encodeURIComponent(ref),
+            headers : {
+                authorization: secretkey,
+                'content-type': 'application/json',
+                'cache-control': 'no-cache'
+           }
+        }
+        const callback=(err,response,body)=>{
+            return cb(err,body);
+        };
+        request(options,callback);
     };
     return {initializepayment,verifypayment};
 }
+module.exports=paystack;
