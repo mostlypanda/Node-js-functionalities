@@ -7,7 +7,7 @@ const path=require('path');
 const _=require('lodash');
 const donor=require('./models/model');
 const { request } = require('express');
-const {initializepayment, verifypayment}=require('./config/paystack')(request);
+const {initializePayment, verifyPayment}=require('./config/paystack')(request);
 
 const app=express();
 
@@ -27,12 +27,12 @@ app.get('/',function(req,res){
 })
 
 app.post('/paystack/pay',function(req,res){
-    const form=_.pick(req.body,['amount','email','name']);
+    const form=_.pick(req.body,['amount','email','full_name']);
     form.metadata={
-        name : form.name
+        full_name : form.full_name
     }
     form.amount*=100;
-    initializepayment(form,(error,body)=>{
+    initializePayment(form,(error,body)=>{
         if(error) {
             console.log(error);
             return;
@@ -42,7 +42,41 @@ app.post('/paystack/pay',function(req,res){
     });
 });
 
-
+app.get('/paystack/callback', (req,res) => {
+    const ref = req.query.reference;
+    verifyPayment(ref, (error,body)=>{
+        if(error){
+            //handle errors appropriately
+            console.log(error)
+            return res.redirect('/error');
+        }
+        response = JSON.parse(body);
+        const data = _.at(response.data, ['reference', 'amount','customer.email', 'metadata.full_name']);
+        [reference, amount, email, full_name] =  data;
+        newDonor = {reference, amount, email, full_name}
+        const donor = new Donor(newDonor)
+        donor.save().then((donor)=>{
+            if(!donor){
+                res.redirect('/error');
+            }
+            res.redirect('/receipt/'+donor._id);
+        }).catch((e)=>{
+            res.redirect('/error');
+       });
+    });
+});
+app.get('/receipt/:id', (req, res)=>{
+    const id = req.params.id;
+    Donor.findById(id).then((donor)=>{
+        if(!donor){
+            //handle error when the donor is not found
+            res.redirect('/error')
+        }
+        res.render('success.pug',{donor});
+    }).catch((e)=>{
+        res.redirect('/error')
+    });
+});
 const port=process.env.PORT||3000;
 app.listen(port,()=>{
     console.log(`app is live at ${port}`);

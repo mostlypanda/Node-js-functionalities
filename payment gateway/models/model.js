@@ -1,7 +1,7 @@
 const mongoose=require('mongoose');
 
 const donorschema=mongoose.Schema({
-    name:{
+    full_name:{
         type : String,
         required : true
     },

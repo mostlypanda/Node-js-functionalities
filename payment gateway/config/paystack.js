@@ -1,40 +1,40 @@
-const request=require('request');
+var request = require('request');
 
-const paystack=function(request){
-    const secretkey='sk_test_adf1b701bf31970a670478a66ca0b2902eb2cfd0';
+const paystack = (req) => {
+    const MySecretKey = 'sk_test_adf1b701bf31970a670478a66ca0b2902eb2cfd0';
 
-    const initializepayment=function(form, cb){
-        const options={
+    const initializePayment = (form, mycallback) => {
+        const options = {
             url : 'https://api.paystack.co/transaction/initialize',
             headers : {
-                authorization : secretkey,
-                'content-type' : 'application/json',
-                'cache-control' : 'no-cache'
+                authorization: MySecretKey,
+                'content-type': 'application/json',
+                'cache-control': 'no-cache'    
             },
             form
         }
-        const callback=(error,response,body)=>{
-            return cb(error,body);
+        const callback = (error, response, body) => {
+            return mycallback(error, body)
         }
-        request.post(options,callback);
-    };
+        request.post(options, callback)
+    }
 
-
-    const verifypayment=function(ref,cb){
-
+    const verifyPayment = (ref, mycallback) => {
         const options = {
             url : 'https://api.paystack.co/transaction/verify/'+encodeURIComponent(ref),
             headers : {
-                authorization: secretkey,
+                authorization: MySecretKey,
                 'content-type': 'application/json',
-                'cache-control': 'no-cache'
-           }
+                'cache-control': 'no-cache'    
+            }
         }
-        const callback=(err,response,body)=>{
-            return cb(err,body);
-        };
-        request(options,callback);
-    };
-    return {initializepayment,verifypayment};
+        const callback = (error, response, body) => {
+            return mycallback(error, body)
+        }
+        request(options, callback)
+    }
+
+    return {initializePayment, verifyPayment};
 }
-module.exports=paystack;
+
+module.exports = paystack;

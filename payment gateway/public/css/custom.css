@@ -1,0 +1,78 @@
+body{
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    background-image:   linear-gradient(45deg, rgba(255,0,0,0), rgb(93, 192, 206));
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+nav{
+    background: rgb(3, 102, 116);
+}
+
+main{
+    width: 60%;
+    margin:  auto;
+    margin-top: 10vh;
+}
+
+.container3{
+    background: rgb(3, 102, 116);
+    border-radius: 10px;
+}
+.container4{
+    border-bottom: solid 2px rgb(119, 116, 116);
+}
+
+form{
+    padding: 5px;
+}
+
+form input{
+    height: 45px;
+    width: 100%;
+    padding: 5px 15px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 2px;
+    border: none;
+}
+
+select {
+    width: 100%;
+    padding: 5px 15px;
+    color: gray;
+    height: 45px;
+    border: none;
+    border-radius: 3px;
+}
+
+
+.bttn {
+    padding-left: 90px;
+}
+
+.spn {
+    color: rgb(241, 69, 39);
+}
+
+button, .a-btn{
+    justify-items: center;
+    background: rgb(243, 123, 102);
+    width: 60%;
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    color: #fff;
+    transition: 0.9s;
+}
+
+.a-btn{
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+button:hover, .a-btn:hover {
+    background: rgb(204, 57, 31);
+    color: #fff;
+    text-decoration: none;
+}
