@@ -12,7 +12,7 @@ then user has to enter the received otp for further verification
 ## tutorial blogs
 In this series I have also written the tutorial blogs-
 * My first blog is about developing CRUD api's 
-(url - [a link](https://medium.com/@sarthakmittal1461/to-make-restful-crud-apis-with-node-js-express-and-mongodb-5e76a7d2d8fe) )
+( [My blog url ](https://medium.com/@sarthakmittal1461/to-make-restful-crud-apis-with-node-js-express-and-mongodb-5e76a7d2d8fe) )
 
 ## you will find more stay tuned with my medium.com profile
 
