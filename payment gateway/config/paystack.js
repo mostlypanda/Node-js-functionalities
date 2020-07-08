@@ -1,4 +1,4 @@
-const { response } = require("express");
+const request=require('request');
 
 const paystack=function(request){
     const secretkey='sk_test_adf1b701bf31970a670478a66ca0b2902eb2cfd0';
