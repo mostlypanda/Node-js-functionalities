@@ -27,9 +27,13 @@ mongooses.connect(db).then(()=>{
 app.post('/api/signup',function(req,res){
    // taking a user
     var newUser=new User({
+        name:req.body.name,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        password2:req.body.password
     });
+    if(password!=password2)
+    return res.status(400).json({message: "passwords don't match"});
   
    // checking whether user is already registered or not
     User.findOne({email: newUser.email},function(err,user){

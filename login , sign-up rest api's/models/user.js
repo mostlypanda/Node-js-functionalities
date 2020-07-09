@@ -3,14 +3,19 @@ const bcrypt =require('bcrypt');
 const jwt =require('jsonwebtoken');
 const config =require('./../config/config').get(process.env.NODE_ENV);
 const UserSchema= mongoose.Schema({
+    name:{
+        type: String,
+        required: true
+    },
     email:{
         type:String,
-        require: true
+        required: true
     },
     password:{
         type:String,
-        require: true
-    }
+        required: true
+    },
+    
 });
 UserSchema.methods.generateToken =function(cb){
     var user =this;
