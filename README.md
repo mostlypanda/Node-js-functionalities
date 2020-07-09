@@ -8,6 +8,7 @@ Upto now I have uploadedbelow functionalities
 then user has to enter the received otp for further verification
 4. CRUD(Create, Read, Update, Delete) API's have been successfully created, here you can create any note and then you can find it by id, author name, title as well as all, you can edit it by id name and delete it also
 5. To upload an image in nodejs using multer(local storage)
+6. Implementing a payment gateway in node-js
 ---
 ## tutorial blogs
 In this series I have also written the tutorial blogs-
