@@ -84,7 +84,7 @@ app.post('/api/login', function(req,res){
 
     }); 
 
-    // get logged in user
+// get logged in user
 app.get('/api/profile',auth,function(req,res){
         res.json({
             isAuth: true,
