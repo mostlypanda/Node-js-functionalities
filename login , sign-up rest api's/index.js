@@ -18,7 +18,7 @@ mongoose.Promise=global.Promise;
 mongoose.connect(db.DATABASE,{ useNewUrlParser: true,useUnifiedTopology:true },function(err){
     if(err) console.log(err);
     console.log("database is connected");
-})
+});
 
 
 // adding new user (sign-up route)
@@ -98,10 +98,10 @@ app.get('/api/profile',auth,function(req,res){
 
 app.get('/',function(req,res){
     res.status(200).send(`Welcome to login , sign-up api`);
-})
+});
 
 // listening port
 const PORT=process.env.PORT||3000;
 app.listen(PORT,()=>{
     console.log(`app is live at ${PORT}`);
-})
+});
