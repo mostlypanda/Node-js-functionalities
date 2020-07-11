@@ -63,16 +63,25 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
 ---
 
 
-# to run any above utility or api
+# to run any above utility or api in your local machinery
 clone the above repository by using 
 ```
-git clone "Repo_name"
+git clone "https://github.com/mostlypanda/Node-js-functionalities.git"
 ```
 then
 ```
 cd (name of the folder you want to go)
 ```
-and finally
+then to install all the dependencies required for proper functioning of the app
 ```
-npm install
+npm install 
+```
+then finally
+```
+nodemon
+```
+(use only nodemon if index.js is main file otherwise)
+
+```
+nodemon app.js
 ```
