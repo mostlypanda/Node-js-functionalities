@@ -14,6 +14,10 @@ const userschema=mongoose.Schema({
     password:{
         type:String,
         required:true
+    },
+    imagename:{
+        type: String,
+        
     }
 });
 
