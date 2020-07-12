@@ -35,6 +35,11 @@ app.post('/register',function(req,res){
     console.log(err);
     res.send(doc);
   });
+});
+
+app.post('/upload',upload.any(),function(req,res){
+  
+
 })
 
 app.listen(3000,()=>{
