@@ -1,6 +1,7 @@
 const express=require('express');
 const bodyparser=require('body-parser');
 const mongoose=require('mongoose');
+const multer=require('multer');
 const user=require('./model');
 const app=express();
 
