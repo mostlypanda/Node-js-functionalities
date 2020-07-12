@@ -3,6 +3,7 @@ const bodyparser=require('body-parser');
 const mongoose=require('mongoose');
 const multer=require('multer');
 const user=require('./model');
+const file=require('./filemodel');
 const app=express();
 
 var storage=multer.diskStorage({
