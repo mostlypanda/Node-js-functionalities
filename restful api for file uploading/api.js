@@ -25,8 +25,10 @@ mongoose.connect('mongodb+srv://test:test@cluster0-bi1rv.mongodb.net/test?retryW
                   console.log("connected to db");
                 });
 
-app.post('/register',upload.any('file'),function(req,res){
+app.post('/register',function(req,res){
+  
   const newuser=new user(req.body);
+  
   newuser.save(function(err,doc){
     if(err)
     console.log(err);
