@@ -1,10 +1,12 @@
 const Nightmare = require('nightmare')
 const cheerio = require('cheerio');
+const express=require('express');
+const app=express();
 const nightmare = Nightmare({ show: true });
 const url = 'https://www.flipkart.com/';
 
-
-nightmare
+app.get('/flipkart',(req,res)=>{
+    nightmare
   .goto(url)
   .wait('body')
   .click('button._2AkmmA._29YdH8')
@@ -18,6 +20,8 @@ nightmare
   }).catch(err => {
     console.log(err);
   });
+
+});
 
 let getData = html => {
   data = [];
@@ -36,3 +40,7 @@ let getData = html => {
   });
   return data;
 }
+
+app.listen(3000,()=>{
+    console.log("app is live at 3000");
+});
