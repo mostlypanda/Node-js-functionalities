@@ -9,6 +9,9 @@ then user has to enter the received otp for further verification
 4. CRUD(Create, Read, Update, Delete) API's have been successfully created, here you can create any note and then you can find it by id, author name, title as well as all, you can edit it by id name and delete it also
 5. To upload an image in nodejs using multer(local storage)
 6. Implementing a payment gateway in node-js
+7. Implementing web scrapping for static as well as dynamic content:
+  1. for static content, I have used axios(to get content) and cheerios for parsing HTML DOM
+  2. for dynamic content nightmare has been used, here flipkart search is also implemented where you can get data of any product 
 ---
 ## tutorial blogs
 In this series I have also written the tutorial blogs-

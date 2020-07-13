@@ -17,6 +17,7 @@ app.get('/flipkart',(req,res)=>{
   .end()
   .then(response => {
     console.log(getData(response));
+   res.json(getData(response))
   }).catch(err => {
     console.log(err);
   });
