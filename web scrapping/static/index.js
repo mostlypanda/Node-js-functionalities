@@ -11,4 +11,9 @@ axios.get(url)
         console.log(res.data);
     }).catch(err=>{
         console.log(err);
-    })
+    });
+
+
+app.listen(3000,()=>{
+    console.log("app is live");
+})    
