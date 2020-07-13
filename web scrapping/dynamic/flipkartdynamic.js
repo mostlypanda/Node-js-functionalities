@@ -3,6 +3,7 @@ const cheerio = require('cheerio');
 const nightmare = Nightmare({ show: true });
 const url = 'https://www.flipkart.com/';
 
+
 nightmare
   .goto(url)
   .wait('body')
