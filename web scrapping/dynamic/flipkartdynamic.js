@@ -4,13 +4,14 @@ const express=require('express');
 const app=express();
 const nightmare = Nightmare({ show: true });
 const url = 'https://www.flipkart.com/';
+var searchquery='laptops';
 
 app.get('/flipkart',(req,res)=>{
     nightmare
   .goto(url)
   .wait('body')
   .click('button._2AkmmA._29YdH8')
-  .type('input.LM6RPg', 'laptop')
+  .type('input.LM6RPg', searchquery)
   .click('button.vh79eN')
   .wait('div.bhgxx2')
   .evaluate(() => document.querySelector('body').innerHTML)
