@@ -12,6 +12,7 @@
     "axios": "^0.19.2",
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
+    "nightmare": "^3.0.2",
     "nodemon": "^2.0.4"
   }
 }
