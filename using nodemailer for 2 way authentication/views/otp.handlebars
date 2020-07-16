@@ -23,17 +23,23 @@
       </div>
       <div class="contact">
         {{msg}}
-        <form method="POST" action="sendotp">
+        <form method="POST" action="verify">
           <p>
             <label>Enter otp</label>
             <input type="text" name="otp" required>
           </p>
           
-         
           <p class="full">
             <button type="submit">Submit</button>
           </p>
+
         </form>
+        <br>
+        <form method="POST" action="resend">
+          <p class="full">
+            <button type="submit">resend otp</button>
+          </p>
+          
       </div>
     </div>
   </div>
