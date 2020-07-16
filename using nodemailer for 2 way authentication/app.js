@@ -28,42 +28,32 @@ otp = otp * 1000000;
 otp = parseInt(otp);
 console.log(otp);
 
+let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    service : 'Gmail',
+    
+    auth: {
+      user: 'sarthakmittal1461@gmail.com',
+      pass: 'S@rth@k09',
+    }
+    
+  });
+    
+ 
+
+
 app.post('/send',function(req,res){
-    const output= `
-    <h1> You have a new contact request</h1>
-    <h3>COntact Details</h3>
-    <ul>
-    <li> Firstname: ${req.body.firstname}</li>
-    <li> Lastname: ${req.body.lastname}</li>
-    <li> email: ${req.body.email}</li>
-    <li> phone: ${req.body.phone}</li>
-    </ul>
-    <h3>Message</h3>
-    <p>${req.body.message}</p>
+    
+     // send mail with defined transport object
+    var mailOptions={
+        to: req.body.email,
+       subject: "Otp for registration is: ",
+       html: "<h3>OTP for account verification is </h3>"  + "<h1 style='font-weight:bold;'>" + otp +"</h1>" // html body
+     };
 
-    `;
-
-    let transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 465,
-        secure: true,
-        service : 'Gmail',
-        
-        auth: {
-          user: 'Your email',
-          pass: 'your password',
-        }
-        
-      });
-        
-      // send mail with defined transport object
-      var mailOptions={
-         to: req.body.email,
-        subject: "Otp for registration is: ",
-        html: "<h3>OTP for account verification is </h3>"  + "<h1 style='font-weight:bold;'>" + otp +"</h1>" // html body
-      };
-      
-      transporter.sendMail(mailOptions, (error, info) => {
+     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             return console.log(error);
         }
@@ -72,7 +62,7 @@ app.post('/send',function(req,res){
   
         res.render('otp');
     });
-    });
+});
 
 app.post('/sendotp',function(req,res){
 
@@ -82,7 +72,7 @@ app.post('/sendotp',function(req,res){
     else{
         res.render('otp',{msg : 'otp is incorrect'});
     }
-})    
+});   
 
 const PORT=process.env.PORT||3000;
 app.listen(PORT,()=>{
