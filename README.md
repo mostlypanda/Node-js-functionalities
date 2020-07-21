@@ -25,7 +25,7 @@ In this series I have also written the tutorial blogs-
 ([My blog url](https://medium.com/@sarthakmittal1461/to-build-otp-verification-for-2-way-authentication-using-node-js-and-express-9e8a68836d62))
 
 ## you will find more stay tuned with my medium.com profile 
-[profile](https://medium.com/@sarthakmittal1461)
+[My profile @sarthakmittal](https://medium.com/@sarthakmittal1461)
 
 ---
 ## Requirements
