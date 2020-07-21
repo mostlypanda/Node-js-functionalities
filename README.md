@@ -21,6 +21,8 @@ In this series I have also written the tutorial blogs-
 * So this blog is about how to build RESTful User API's for login/sign-up and logout in node.js, express and mongodb using jwt-authentication
 ([My blog url](https://medium.com/@sarthakmittal1461/to-build-login-sign-up-and-logout-restful-apis-with-node-js-using-jwt-authentication-f3d7287acca2))
 
+*This blog is about building
+
 ## you will find more stay tuned with my medium.com profile 
 [profile](https://medium.com/@sarthakmittal1461)
 
