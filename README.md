@@ -3,7 +3,7 @@
 ![Issues](https://img.shields.io/github/issues/mostlypanda/node-js-functionalities?style=plastic)
 ![Code-Size](https://img.shields.io/github/languages/code-size/mostlypanda/node-js-functionalities?style=plastic)
 ![Release](https://img.shields.io/github/v/release/mostlypanda/node-js-functionalities?style=plastic)
-![Completion](https://img.shields.io/badge/Project%20Keep%20updating%20New%20Ideas-blue?style=plastic)
+![Completion](https://img.shields.io/badge/Project%20Phase-Keep%20updating%20New%20Ideas-blue?style=plastic)
 
 Well it contains many completely defined node-js REST API's for different functionality
 Upto now I have uploaded below functionalities in this repository
