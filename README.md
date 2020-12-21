@@ -6,7 +6,7 @@
 ![Completion](https://img.shields.io/badge/Project%20Phase-Keep%20updating%20New%20Ideas-blue?style=plastic)
 
 Well it contains many completely defined node-js REST API's for different functionality
-Upto now I have uploaded below functionalities in this repository
+Upto now I have uploaded below functionalities in this repository and some amazing tutorials for important features of nodejs
 
 1. Session expire using nodejs
 2. Rest Api's for user sign-up, login, logout and user profile using node-js, expess, mongodb along with jwt token as an authentication agent
@@ -19,7 +19,7 @@ then user has to enter the received otp for further verification
   1. for static content, I have used axios(to get content) and cheerios for parsing HTML DOM
   2. for dynamic content nightmare has been used, here flipkart search is also implemented where you can get data of any product 
 ---
-## tutorial blogs
+## Tutorial Blogs
 In this series I have also written the tutorial blogs-
 * My first blog is about developing CRUD api's 
 ( [My blog url ](https://medium.com/@sarthakmittal1461/to-make-restful-crud-apis-with-node-js-express-and-mongodb-5e76a7d2d8fe) )
