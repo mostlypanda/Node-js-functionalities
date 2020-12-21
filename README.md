@@ -1,6 +1,6 @@
 # node-js-components
 Well it contains many completely defined node-js REST API's for different functionality
-Upto now I have uploadedbelow functionalities
+Upto now I have uploaded below functionalities in this repository
 
 1. Session expire using nodejs
 2. Rest Api's for user sign-up, login, logout and user profile using node-js, expess, mongodb along with jwt token as an authentication agent
