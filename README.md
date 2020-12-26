@@ -4,7 +4,7 @@
 ![Code-Size](https://img.shields.io/github/languages/code-size/mostlypanda/node-js-functionalities?style=plastic)
 ![Release](https://img.shields.io/github/v/release/mostlypanda/node-js-functionalities?style=plastic)
 ![Completion](https://img.shields.io/badge/Project%20Phase-Keep%20updating%20New%20Ideas-blue?style=plastic)
-
+[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=mostlypanda&repo=Node-js-functionalities&show_icons=true&theme=radical)](https://github.com/anuraghazra/github-readme-stats)
 Well it contains many completely defined node-js REST API's for different functionality
 Upto now I have uploaded below functionalities in this repository and some amazing tutorials for important features of nodejs
 
