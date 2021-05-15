@@ -1,0 +1,11 @@
+{
+  "name": "nodecli",
+  "version": "1.0.0",
+  "description": "Developing a Command Line Interface using Node.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sarthak Mittal",
+  "license": "MIT"
+}
