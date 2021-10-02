@@ -4,6 +4,7 @@
 
 ![Languages](https://img.shields.io/github/languages/count/mostlypanda/node-js-functionalities?style=plastic)
 ![Issues](https://img.shields.io/github/issues/mostlypanda/node-js-functionalities?style=plastic)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat&logo=github)](https://github.com/mostlypanda/Node-js-functionalities)
 ![Code-Size](https://img.shields.io/github/languages/code-size/mostlypanda/node-js-functionalities?style=plastic)
 ![Release](https://img.shields.io/github/v/release/mostlypanda/node-js-functionalities?style=plastic)
 ![Completion](https://img.shields.io/badge/Project%20Phase-Keep%20updating%20New%20Ideas-blue?style=plastic)
