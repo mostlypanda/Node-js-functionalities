@@ -12,7 +12,7 @@
     "async": "^3.2.0",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "express-handlebars": "^4.0.4",
+    "express-handlebars": "^5.3.1",
     "nodemailer": "^6.4.10",
     "nodemon": "^2.0.4",
     "redis": "^3.0.2"
